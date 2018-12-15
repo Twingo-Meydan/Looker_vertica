@@ -28,6 +28,7 @@ view: store_orders_fact {
     ]
     convert_tz: no
     datatype: date
+    drill_fields: [date_ordered_week,date_ordered_month,date_ordered_quarter,date_ordered_year]
     sql: ${TABLE}.date_ordered ;;
   }
 

@@ -15,7 +15,13 @@ persist_with: vertica_data_default_datagroup
 
 explore: customer_dimension {}
 
-explore: date_dimension {}
+explore: date_dimension {
+  join: store_orders_fact {
+    type: full_outer
+    sql_on: ${date_dimension.date_date}=${store_orders_fact.date_ordered_date} ;;
+    relationship: one_to_one
+  }
+}
 
 explore: product_dimension {}
 
