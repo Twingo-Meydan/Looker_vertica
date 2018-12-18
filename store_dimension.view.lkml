@@ -89,6 +89,7 @@ view: store_dimension {
   dimension: store_name {
     type: string
     sql: ${TABLE}.store_name ;;
+    drill_fields: [store_city,store_region,store_state]
   }
 
   dimension: store_number {

@@ -9,6 +9,7 @@ view: product_dimension {
   dimension: category_description {
     type: string
     sql: ${TABLE}.category_description ;;
+    drill_fields: [product_description]
   }
 
   dimension: department_description {
@@ -59,6 +60,7 @@ view: product_dimension {
   dimension: product_description {
     type: string
     sql: ${TABLE}.product_description ;;
+    drill_fields: [category_description]
   }
 
   dimension: product_key {
