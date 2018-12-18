@@ -14,14 +14,14 @@
   - title: Food
     name: Food
     model: vertica_data
-    explore: product_dimension
+    explore: store_orders_fact
     type: single_value
     fields:
-    - product_dimension.product_price
-    - product_dimension.category_description
+    - store_orders_fact.unit_price
+    - store_orders_fact.category_description
 
     sorts:
-    - product_dimension.product_price desc
+    - store_orders_fact.product_cost desc
     limit: 500
     column_limit: 50
     custom_color_enabled: false
@@ -68,15 +68,15 @@
   - title: New Tile (copy 2)
     name: New Tile (copy 2)
     model: vertica_data
-    explore: product_dimension
+    explore: store_orders_fact
     type: single_value
     fields:
-    - product_dimension.product_price
-    - product_dimension.category_description
+    - store_orders_fact.unit_price
+    - store_orders_fact.category_description
     filters:
-      product_dimension.category_description: Misc
+      store_orders_fact.category_description: Misc
     sorts:
-    - product_dimension.product_price desc
+    - store_orders_fact.product_cost desc
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -123,15 +123,15 @@
   - title: Non-food
     name: Non-food
     model: vertica_data
-    explore: product_dimension
+    explore: store_orders_fact
     type: single_value
     fields:
-    - product_dimension.product_price
-    - product_dimension.category_description
+    - store_orders_fact.unit_price
+    - store_orders_fact.category_description
     filters:
-      product_dimension.category_description: Non-food
+      store_orders_fact.category_description: Non-food
     sorts:
-    - product_dimension.product_price desc
+    - store_orders_fact.product_cost desc
     limit: 500
     column_limit: 50
     custom_color_enabled: false
@@ -178,15 +178,15 @@
   - title: Medical Insights
     name: Medical Insights
     model: vertica_data
-    explore: product_dimension
+    explore: store_orders_fact
     type: single_value
     fields:
-    - product_dimension.product_price
-    - product_dimension.category_description
+    - store_orders_fact.unit_price
+    - store_orders_fact.category_description
     filters:
-      product_dimension.category_description: Medical
+      store_orders_fact.category_description: Medical
     sorts:
-    - product_dimension.product_price desc
+    - store_orders_fact.product_cost desc
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -304,13 +304,13 @@
   - title: Orders by Product Category
     name: Orders by Product Category
     model: vertica_data
-    explore: product_dimension
+    explore: store_orders_fact
     type: looker_pie
     fields:
-    - product_dimension.product_price
-    - product_dimension.category_description
+    - store_orders_fact.unit_price
+    - store_orders_fact.category_description
     sorts:
-    - product_dimension.product_price desc
+    - store_orders_fact.product_cost desc
     limit: 500
     value_labels: labels
     label_type: labPer
