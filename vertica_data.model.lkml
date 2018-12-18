@@ -41,5 +41,10 @@ explore: store_orders_fact {
     sql_on: ${product_dimension.product_key}=${store_orders_fact.product_key} ;;
     relationship: one_to_many
   }
+  join: store_dimension {
+    type: left_outer
+    sql_on: ${store_dimension.store_key}=${store_orders_fact.store_key} ;;
+    relationship: one_to_many
+  }
 
 }
