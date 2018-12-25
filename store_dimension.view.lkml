@@ -105,6 +105,7 @@ view: store_dimension {
   dimension: store_state {
     type: string
     sql: ${TABLE}.store_state ;;
+    drill_fields: [store_name,store_region,store_city]
   }
 
   dimension: total_square_footage {

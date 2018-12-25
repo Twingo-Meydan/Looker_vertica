@@ -58,6 +58,7 @@ view: product_dimension {
   }
 
   dimension: product_description {
+    label: "Product"
     type: string
     sql: ${TABLE}.product_description ;;
     drill_fields: [category_description]
@@ -94,6 +95,7 @@ view: product_dimension {
   }
 
   dimension: sku_number {
+    hidden: yes
     type: string
     sql: ${TABLE}.sku_number ;;
   }
