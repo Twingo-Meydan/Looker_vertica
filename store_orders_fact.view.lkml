@@ -155,7 +155,7 @@ dimension: Order_cost {
   }
 
 measure: Avg_cost {
-  label: "Profit"
+  label: "Average Cost"
   type: average
   sql: ${Order_cost};;
 
