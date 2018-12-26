@@ -100,7 +100,10 @@ view: store_orders_fact {
     sql: ${TABLE}.quantity_ordered ;;
   }
 
-
+dimension: Order_cost {
+  type: number
+  sql:  ${TABLE}.total_order_cost ;;
+}
 
   dimension: shipper_name {
     type: string
@@ -117,7 +120,7 @@ view: store_orders_fact {
     sql: ${TABLE}.store_key ;;
   }
 
-  measure: total_order_cost {
+  measure: sum_total_order_cost {
     type: sum
     sql: ${TABLE}.total_order_cost ;;
   }
@@ -151,6 +154,11 @@ view: store_orders_fact {
     sql: public.product_dimension.category_description ;;
   }
 
+measure: Avg_cost {
+  label: "Profit"
+  type: average
+  sql: ${Order_cost};;
 
+}
 
 }
