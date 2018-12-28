@@ -5,6 +5,7 @@
   - name: New_Vertica_Dashboard
     type: text
     title_text: "My New Vertica Dashboard"
+    background_color: red
     body_text: ''
     row: 0
     col: 1
