@@ -231,6 +231,7 @@
     height: 1
 
   - title: Order Count by Year
+    title_font_size: 30px
     name: Order Count by Year
     model: vertica_data
     explore: store_orders_fact
@@ -246,7 +247,7 @@
     query_timezone: America/Los_Angeles
     stacking: ''
     show_value_labels: true
-    label_density: 11
+    label_density: 90
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
