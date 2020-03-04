@@ -50,6 +50,7 @@ view: store_sales_fact {
     type: sum
     label: "sum of sales"
     sql: ${TABLE}.sales_dollar_amount ;;
+    value_format: "0.000,,\" B\""
   }
 
   measure: sales_quantity {
