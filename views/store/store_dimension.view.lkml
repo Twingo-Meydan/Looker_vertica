@@ -106,10 +106,12 @@ view: store_dimension {
     sql: ${TABLE}.store_region ;;
   }
 
-  dimension: store_state {
+  dimension: country {
     type: string
+    map_layer_name: countries
     sql: ${TABLE}.store_state ;;
   }
+
 
   dimension: total_square_footage {
     type: number
