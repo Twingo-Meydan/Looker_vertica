@@ -54,7 +54,7 @@ view: store_sales_fact {
   }
 
   measure: sum_sales_quantity {
-    type: number
+    type: sum
     sql: ${TABLE}.sales_quantity ;;
   }
 
