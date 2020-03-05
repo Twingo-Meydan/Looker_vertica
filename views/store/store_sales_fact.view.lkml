@@ -53,7 +53,7 @@ view: store_sales_fact {
     value_format: "$0.00,,,\" B\""
   }
 
-  measure: sales_quantity {
+  measure: sum_sales_quantity {
     type: number
     sql: ${TABLE}.sales_quantity ;;
   }
