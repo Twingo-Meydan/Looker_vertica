@@ -26,4 +26,10 @@ explore: store_sales_fact {
     relationship: many_to_one
   }
 
+  join: customer_dimension {
+    type: left_outer
+    sql_on: ${customer_dimension.customer_key} = ${store_sales_fact.customer_key} ;;
+    relationship: many_to_one
+  }
+
 }
