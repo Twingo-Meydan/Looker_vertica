@@ -32,4 +32,9 @@ explore: store_sales_fact {
     relationship: many_to_one
   }
 
+  join: store_dimension {
+    type: left_outer
+    sql_on: ${store_dimension.store_key} = ${store_sales_fact.store_key} ;;
+    relationship: many_to_one
+  }
 }
