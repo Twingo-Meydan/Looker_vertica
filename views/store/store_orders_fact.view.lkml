@@ -155,14 +155,14 @@ view: store_orders_fact {
     ;;
   }
 
-  measure: total_sales_ytd {
+  measure: total_orders_ytd {
     type: sum
     sql: ${TABLE}.total_order_cost;;
     filters: {
       field: is_ytd
       value: "yes"
     }
-    label: "Sales Year-to-Date"
+    label: "Orders Year-to-Date"
   }
 
 }

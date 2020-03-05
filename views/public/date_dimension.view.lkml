@@ -120,4 +120,19 @@ view: date_dimension {
     type: count
     drill_fields: [calendar_month_name]
   }
+
+  dimension: is_ytd {
+    type: yesno
+    group_label: "Date Restrictions"
+    label: "Is YTD?"
+    view_label: "Dynamic Grouping & Time Comparisons"
+    sql:
+    MONTH(${TABLE}.date) < MONTH(CURRENT_TIMESTAMP)
+    OR
+    (MONTH(${TABLE}.date) = MONTH(CURRENT_TIMESTAMP)
+    AND
+    DAY(${TABLE}.date) <= DAY(CURRENT_TIMESTAMP))
+    ;;
+  }
+
 }

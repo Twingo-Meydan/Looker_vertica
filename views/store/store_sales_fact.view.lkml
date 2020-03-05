@@ -92,4 +92,16 @@ view: store_sales_fact {
     drill_fields: []
   }
 
+
+  measure: total_sales_ytd {
+    type: sum
+    sql: ${TABLE}.sales_dollar_amount;;
+#     filters: {
+#       field:  is_ytd
+#       value: "yes"
+#     }
+    label: "Sales Year-to-Date"
+  }
+
+
 }
