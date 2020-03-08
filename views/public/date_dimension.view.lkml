@@ -142,6 +142,26 @@ view: date_dimension {
     ;;
   }
 
+  dimension: is_current_month {
+    type: yesno
+    group_label: "Date Restrictions"
+    label: "Is Current month?"
+    view_label: "Dynamic Grouping & Time Comparisons"
+    sql:
+    MONTH(${TABLE}.date) = MONTH(CURRENT_TIMESTAMP)
+    ;;
+  }
+
+  dimension: is_previous_month {
+    type: yesno
+    group_label: "Date Restrictions"
+    label: "Is Previous month?"
+    view_label: "Dynamic Grouping & Time Comparisons"
+    sql:
+    MONTH(${TABLE}.date) =  month(add_months(current_date,-1))
+    ;;
+  }
+
 #   measure: total_sales_quantity_ytd {
 #     type: sum
 #     sql: $(store_sales_fact).sales_dollar_amount;;
