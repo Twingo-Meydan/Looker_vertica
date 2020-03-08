@@ -135,4 +135,24 @@ view: date_dimension {
     ;;
   }
 
+  measure: total_sales_quantity_ytd {
+    type: sum
+    sql: $(store_sales_fact).sum_sales_quantity;;
+    filters: {
+      field:  date_dimention.is_ytd
+      value: "yes"
+    }
+    label: "Sales Qty Year-to-Date"
+  }
+
+  measure: total_sales_dollar_ytd {
+    type: sum
+    sql: $(store_sales_fact).sum_of_sales_dollar_amount;;
+    filters: {
+      field:  date_dimention.is_ytd
+      value: "yes"
+    }
+    label: "Sales Year-to-Date"
+  }
+
 }
