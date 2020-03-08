@@ -57,6 +57,7 @@ view: date_dimension {
   }
 
   dimension: date_key {
+    primary_key: yes
     type: number
     sql: ${TABLE}.date_key ;;
   }
@@ -137,22 +138,23 @@ view: date_dimension {
 
   measure: total_sales_quantity_ytd {
     type: sum
-    sql: $(store_sales_fact).sum_sales_quantity;;
+    sql: $(store.store_sales_fact).sales_dollar_amount;;
     filters: {
-      field:  date_dimention.is_ytd
+      field:  is_ytd
       value: "yes"
     }
+    value_format: "$0.00,,,\" B\""
     label: "Sales Qty Year-to-Date"
   }
 
-  measure: total_sales_dollar_ytd {
-    type: sum
-    sql: $(store_sales_fact).sum_of_sales_dollar_amount;;
-    filters: {
-      field:  date_dimention.is_ytd
-      value: "yes"
-    }
-    label: "Sales Year-to-Date"
-  }
+#   measure: total_sales_dollar_ytd {
+#     type: sum
+#     sql: $(store_sales_fact).sum_of_sales_dollar_amount;;
+#     filters: {
+#       field:  date_dimention.is_ytd
+#       value: "yes"
+#     }
+#     label: "Sales Year-to-Date"
+#   }
 
 }
