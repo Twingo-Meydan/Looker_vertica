@@ -11,6 +11,7 @@ datagroup: meydan_project_default_datagroup {
 persist_with: meydan_project_default_datagroup
 
 explore: store_orders_fact {
+  label: "Orders"
   join: employee_dimension {
   type: left_outer
   sql_on: ${employee_dimension.employee_key} = ${store_orders_fact.employee_key}  ;;
@@ -20,6 +21,7 @@ explore: store_orders_fact {
 }
 
 explore: store_sales_fact {
+  label:"Sales"
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
@@ -37,4 +39,23 @@ explore: store_sales_fact {
     sql_on: ${store_dimension.store_key} = ${store_sales_fact.store_key} ;;
     relationship: many_to_one
   }
+}
+
+explore: store_dimension {
+  label: "Sales Orders"
+  join: store_orders_fact {
+    type: left_outer
+    sql_on: ${store_dimension.store_key} = ${store_orders_fact.store_key} and ${store_orders_fact.product_key} = ${store_sales_fact.product_key};;
+    relationship: one_to_many
+  }
+
+  join: store_sales_fact {
+    type: left_outer
+    sql_on: ${store_dimension.store_key} = ${store_sales_fact.store_key} and ${store_orders_fact.product_key} = ${store_sales_fact.product_key};;
+    relationship: one_to_many
+  }
+
+
+
+
 }

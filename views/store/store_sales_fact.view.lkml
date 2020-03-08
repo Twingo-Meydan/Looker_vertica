@@ -53,6 +53,7 @@ view: store_sales_fact {
     value_format: "$0.00,,,\" B\""
   }
 
+# ask how the filter can be pointing to another dimention
   measure: total_sales_dollar_ytd {
     type: sum
     sql: ${TABLE}.sales_dollar_amount;;

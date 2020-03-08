@@ -128,11 +128,17 @@ view: date_dimension {
     label: "Is YTD?"
     view_label: "Dynamic Grouping & Time Comparisons"
     sql:
-    MONTH(${TABLE}.date) < MONTH(CURRENT_TIMESTAMP)
-    OR
-    (MONTH(${TABLE}.date) = MONTH(CURRENT_TIMESTAMP)
-    AND
-    DAY(${TABLE}.date) <= DAY(CURRENT_TIMESTAMP))
+    YEAR(${TABLE}.date) = 2007 --last year data\
+    and
+    (
+      MONTH(${TABLE}.date) < MONTH(CURRENT_TIMESTAMP)
+      OR
+      (
+        MONTH(${TABLE}.date) = MONTH(CURRENT_TIMESTAMP)
+        AND
+        DAY(${TABLE}.date) <= DAY(CURRENT_TIMESTAMP)
+      )
+    )
     ;;
   }
 
