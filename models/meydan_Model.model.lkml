@@ -53,9 +53,9 @@ explore: sales_orders {
   join: store_sales_fact
   {
     sql:{% if store_orders_fact._in_query %}
-      FULL OUTER join store.store_sales_fact on  store.store_orders_fact.store_key=store.store_sales_fact.store_key
+      FULL OUTER join store.store_sales_fact on  store_orders_fact.store_key=store.store_sales_fact.store_key
       {% else %}
-      LEFT JOIN store.store_sales_fact on store.store_dimension.store_key=store.store_sales_fact.store_key
+      LEFT JOIN store.store_sales_fact on store_dimension.store_key=store.store_sales_fact.store_key
       {% endif %}    ;;
       type: full_outer
       relationship: one_to_many
