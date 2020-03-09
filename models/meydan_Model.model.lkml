@@ -41,21 +41,23 @@ explore: store_sales_fact {
   }
 }
 
-explore: store_dimension {
+explore: sales_orders {
   label: "Sales Orders"
+  view_name: store_dimension
   join: store_orders_fact {
     type: left_outer
-    sql_on: ${store_dimension.store_key} = ${store_orders_fact.store_key} ;;
+    sql_on: ${store_dimension.store_key}=${store_orders_fact.store_key} ;;
     relationship: one_to_many
   }
 
-  join: store_sales_fact {
-    type: left_outer
-    sql_on: ${store_dimension.store_key} = ${store_sales_fact.store_key};;
-    relationship: one_to_many
+  join: store_sales_fact
+  {
+    sql:{% if store_orders_fact._in_query %}
+      FULL OUTER join store.store_sales_fact on  store.store_orders_fact.store_key=store.store_sales_fact.store_key
+      {% else %}
+      LEFT JOIN store.store_sales_fact on store.store_dimension.store_key=store.store_sales_fact.store_key
+      {% endif %}    ;;
+      type: full_outer
+      relationship: one_to_many
   }
-
-
-
-
 }
