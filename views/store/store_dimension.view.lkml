@@ -114,6 +114,7 @@ view: store_dimension {
 
 
   dimension: total_square_footage {
+    required_access_grants: [can_view_sales_data]
     type: number
     sql: ${TABLE}.total_square_footage ;;
   }

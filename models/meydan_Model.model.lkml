@@ -10,6 +10,11 @@ datagroup: meydan_project_default_datagroup {
 
 persist_with: meydan_project_default_datagroup
 
+access_grant: can_view_sales_data {
+  user_attribute: regions_user_attribute
+  allowed_values: ["East"]
+}
+
 explore: store_orders_fact {
   label: "Orders"
   join: employee_dimension {
@@ -22,6 +27,9 @@ explore: store_orders_fact {
 
 explore: store_sales_fact {
   label:"Sales"
+  required_access_grants: [can_view_sales_data]
+  access_filter: {field: store_dimension.store_region
+    user_attribute: regions_user_attribute }
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
@@ -60,4 +68,8 @@ explore: sales_orders {
       type: full_outer
       relationship: one_to_many
   }
+}
+
+explore: store_orders_fact_derived_table {
+  view_name: store_orders_fact_derived_table
 }
