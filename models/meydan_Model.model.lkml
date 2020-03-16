@@ -73,3 +73,8 @@ explore: sales_orders {
 explore: store_orders_fact_derived_table {
   view_name: store_orders_fact_derived_table
 }
+
+explore: data_from_spreadsheet {
+  persist_for: "24 hours"
+  view_name: data_from_spreadsheet
+}
