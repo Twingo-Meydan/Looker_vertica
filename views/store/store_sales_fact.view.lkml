@@ -67,6 +67,30 @@ view: store_sales_fact {
     label: "Sales Year-to-Date"
   }
 
+  measure: total_sales_dollar_prev_month {
+    type: sum
+    sql: ${TABLE}.sales_dollar_amount;;
+    filters: {
+      field:  date_dimension.is_previous_month
+      value: "yes"
+    }
+    value_format: "$0.00,,,\" B\""
+    label: "Sales Previous month"
+  }
+
+  measure: total_sales_dollar_current_month {
+    type: sum
+    sql: ${TABLE}.sales_dollar_amount;;
+    filters: {
+      field:  date_dimension.is_current_month
+      value: "yes"
+    }
+    value_format: "$0.00,,,\" B\""
+    label: "Sales Current Month"
+  }
+
+
+
   measure: sum_sales_quantity {
     type: sum
     sql: ${TABLE}.sales_quantity ;;
