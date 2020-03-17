@@ -96,7 +96,6 @@ view: store_sales_fact {
       field:  date_dimension.is_previous_month
       value: "yes"
     }
-    value_format: "$0.00,,,\" B\""
     label: "Sales Qty Previous Month"
   }
 
@@ -107,7 +106,6 @@ view: store_sales_fact {
       field:  date_dimension.is_current_month
       value: "yes"
     }
-    value_format: "$0.00,,,\" B\""
     label: "Sales Qty Current Month"
   }
 
