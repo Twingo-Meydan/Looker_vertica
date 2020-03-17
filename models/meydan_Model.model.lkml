@@ -12,7 +12,7 @@ persist_with: meydan_project_default_datagroup
 
 access_grant: can_view_sales_data {
   user_attribute: regions_user_attribute
-  allowed_values: ["East"]
+  allowed_values: ["%"]
 }
 
 explore: store_orders_fact {
