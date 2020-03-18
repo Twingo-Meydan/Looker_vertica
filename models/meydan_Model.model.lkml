@@ -16,7 +16,9 @@ access_grant: can_view_sales_data {
 }
 
 explore: store_orders_fact {
+  view_name: store_orders_fact #this is a must add when extending explorer
   label: "Orders"
+  fields: [ALL_FIELDS*, -employee_dimension.annual_salary]
   join: employee_dimension {
   type: left_outer
   sql_on: ${employee_dimension.employee_key} = ${store_orders_fact.employee_key}  ;;
@@ -24,12 +26,20 @@ explore: store_orders_fact {
   }
 
 }
+explore: store_orders_fact_extended {
+  label: "Orders extended"
+  required_access_grants: [can_view_sales_data]
+  extends: [store_orders_fact]
+  fields: [ALL_FIELDS*,employee_dimension.annual_salary]
+}
+
 
 explore: store_sales_fact {
   label:"Sales"
 #   required_access_grants: [can_view_sales_data]
 #   access_filter: {field: store_dimension.store_region
 #     user_attribute: regions_user_attribute } # this will let Meydan see only East region
+  sql_always_where: ${store_dimension.store_region} in ({ _user_attributes[‘regions_user_attribute’] }) ;;
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
