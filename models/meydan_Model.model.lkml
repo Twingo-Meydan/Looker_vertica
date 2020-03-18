@@ -37,9 +37,13 @@ explore: store_orders_fact_extended {
 explore: store_sales_fact {
   label:"Sales"
 #   required_access_grants: [can_view_sales_data]
-  access_filter: {field: store_dimension.store_region
-    user_attribute: regions_user_attribute } # this will let Meydan see only East region but
-#   sql_always_where: ${store_dimension.store_region} in ({{ _user_attributes['regions_user_attribute'] }}) ;;
+  # USING USER ATTRIBUTES:
+    #OPTION 1:
+    #comment: value should be without '' ---> SQL generated: store_dimension.store_region = '''East''')
+#     access_filter: {field: store_dimension.store_region
+#       user_attribute: regions_user_attribute } # this will let Meydan see only East region but
+    #OPTION 2:
+  sql_always_where: ${store_dimension.store_region} in ({{ _user_attributes['regions_user_attribute'] }}) ;;
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
