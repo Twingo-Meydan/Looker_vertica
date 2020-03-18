@@ -39,7 +39,7 @@ explore: store_sales_fact {
 #   required_access_grants: [can_view_sales_data]
 #   access_filter: {field: store_dimension.store_region
 #     user_attribute: regions_user_attribute } # this will let Meydan see only East region
-  sql_always_where: ${store_dimension.store_region} in ({ _user_attributes[‘regions_user_attribute’] }) ;;
+  sql_always_where: ${store_dimension.store_region} in ({{ _user_attributes['regions_user_attribute'] }}) ;;
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
