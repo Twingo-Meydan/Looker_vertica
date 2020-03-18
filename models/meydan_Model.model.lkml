@@ -20,8 +20,8 @@ explore: store_orders_fact {
   label: "Orders"
   fields: [ALL_FIELDS*, -employee_dimension.annual_salary]
   join: employee_dimension {
-  type: left_outer
-  sql_on: ${employee_dimension.employee_key} = ${store_orders_fact.employee_key}  ;;
+    type: left_outer
+    sql_on: ${employee_dimension.employee_key} = ${store_orders_fact.employee_key}  ;;
     relationship: many_to_one
   }
 
@@ -38,12 +38,12 @@ explore: store_sales_fact {
   label:"Sales"
 #   required_access_grants: [can_view_sales_data]
   # USING USER ATTRIBUTES:
-    #OPTION 1:
-    #comment: value should be without '' ---> SQL generated: store_dimension.store_region = '''East''')
+  #OPTION 1:
+  #comment: value should be without '' ---> SQL generated: store_dimension.store_region = '''East''')
 #     access_filter: {field: store_dimension.store_region
 #       user_attribute: regions_user_attribute } # this will let Meydan see only East region but
-    #OPTION 2:
-  sql_always_where: ${store_dimension.store_region} in ({{ _user_attributes['regions_user_attribute'] }}) ;;
+  #OPTION 2:
+  sql_always_where: ${store_dimension.store_region} like ({{ _user_attributes['regions_user_attribute'] }}) ;;
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
@@ -60,6 +60,12 @@ explore: store_sales_fact {
     type: left_outer
     sql_on: ${store_dimension.store_key} = ${store_sales_fact.store_key} ;;
     relationship: many_to_one
+  }
+
+  join: product_dimension {
+    type:left_outer
+    sql_on: (${product_dimension.product_key} = ${store_sales_fact.product_key} and ${product_dimension.product_version} = ${store_sales_fact.product_version});;
+    relationship: one_to_many
   }
 }
 
@@ -79,8 +85,8 @@ explore: sales_orders {
       {% else %}
       LEFT JOIN store.store_sales_fact on store_dimension.store_key=store.store_sales_fact.store_key
       {% endif %}    ;;
-      type: full_outer
-      relationship: one_to_many
+    type: full_outer
+    relationship: one_to_many
   }
 }
 

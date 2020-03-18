@@ -61,8 +61,10 @@ view: product_dimension {
     sql: ${TABLE}.product_description ;;
   }
 
+  dimension: primary_key {type:number primary_key:yes sql: CONCAT(${TABLE}.product_key, ${TABLE}.product_version) ;;}
+
   dimension: product_key {
-    primary_key: yes
+#     primary_key: yes
     type: number
     sql: ${TABLE}.product_key ;;
   }
@@ -73,7 +75,7 @@ view: product_dimension {
   }
 
   dimension: product_version {
-    primary_key: yes
+#     primary_key: yes
     type: number
     sql: ${TABLE}.product_version ;;
   }

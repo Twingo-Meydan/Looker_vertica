@@ -53,8 +53,6 @@ view: store_sales_fact {
     value_format: "$0.00,,,\" B\""
   }
 
-
-
 # making use of filter from another view
   measure: total_sales_dollar_ytd {
     type: sum
