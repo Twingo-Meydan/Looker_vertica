@@ -64,8 +64,8 @@ explore: store_sales_fact {
 
   join: product_dimension {
     type:left_outer
-    sql_on: (${product_dimension.product_key} = ${store_sales_fact.product_key} and ${product_dimension.product_version} = ${store_sales_fact.product_version});;
-    relationship: one_to_many
+    sql_on: ${product_dimension.primary_key} = CONCAT(${store_sales_fact.product_key}, ${store_sales_fact.product_version});;
+    relationship: many_to_one
   }
 }
 

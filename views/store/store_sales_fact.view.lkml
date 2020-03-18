@@ -123,19 +123,19 @@ view: store_sales_fact {
     sql: ${TABLE}.tender_type ;;
   }
 
-  dimension_group: transaction {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.transaction_time ;;
-  }
+#   dimension_group: transaction {
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: date_dimension.  ;;
+#   }
 
   dimension: transaction_type {
     type: string
@@ -145,6 +145,7 @@ view: store_sales_fact {
   measure: count {
     type: count
     drill_fields: []
+    value_format: "0.000,\" K\""
   }
 
 }
