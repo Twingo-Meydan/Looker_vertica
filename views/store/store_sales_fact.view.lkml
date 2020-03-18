@@ -55,7 +55,7 @@ view: store_sales_fact {
 
 
 
-# ask how the filter can be pointing to another dimention
+# making use of filter from another view
   measure: total_sales_dollar_ytd {
     type: sum
     sql: ${TABLE}.sales_dollar_amount;;

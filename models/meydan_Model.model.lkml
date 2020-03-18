@@ -12,7 +12,7 @@ persist_with: meydan_project_default_datagroup
 
 access_grant: can_view_sales_data {
   user_attribute: regions_user_attribute
-  allowed_values: ["%"]
+  allowed_values: ["East"]
 }
 
 explore: store_orders_fact {
@@ -27,9 +27,9 @@ explore: store_orders_fact {
 
 explore: store_sales_fact {
   label:"Sales"
-  required_access_grants: [can_view_sales_data]
-  access_filter: {field: store_dimension.store_region
-    user_attribute: regions_user_attribute }
+#   required_access_grants: [can_view_sales_data]
+#   access_filter: {field: store_dimension.store_region
+#     user_attribute: regions_user_attribute } # this will let Meydan see only East region
   join: date_dimension {
     type: left_outer
     sql_on: ${date_dimension.date_key} = ${store_sales_fact.date_key}  ;;
